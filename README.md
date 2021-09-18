@@ -1,5 +1,5 @@
 # arfedora-search-provider
-Arfedora search provider for GNOME Shell
+Arfedora search provider for GNOME Shell (for learning)
 
 ## Installation
 
