@@ -17,6 +17,8 @@ Then run:
 git clone https://github.com/yucefsourani/arfedora-search-provider
 cd arfedora-search-provider
 sudo ./install.sh
+
+after install logout/login or reboot system
 ```
 
 And to uninstall it:
