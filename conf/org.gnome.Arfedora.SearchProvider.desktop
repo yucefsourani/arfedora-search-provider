@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Categories=GNOME;
+Icon=system-search-symbolic
+DesktopId=arfedora.desktop
+Name=Arfedora
+Comment=GNOME Shell search provider for Arfedora
+Terminal=false
+Type=Application

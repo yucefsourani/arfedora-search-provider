@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.gnome.Arfedora.SearchProvider
+Exec=/usr/lib/arfedora-search-provider/arfedora-search-provider.py
+SystemdService=org.gnome.Arfedora.SearchProvider.service

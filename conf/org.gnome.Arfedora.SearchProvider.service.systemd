@@ -1,0 +1,8 @@
+[Unit]
+Description=Arfedora search provider for GNOME Shell daemon
+
+[Service]
+Type=dbus
+BusName=org.gnome.Arfedora.SearchProvider
+ExecStart=/usr/lib/arfedora-search-provider/arfedora-search-provider.py
+
