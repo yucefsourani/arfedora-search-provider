@@ -1,5 +1,5 @@
 # arfedora-search-provider
-Arfedora search provider for GNOME Shell (for learning)
+Arfedora search provider for GNOME Shell
 
 ## Installation
 
@@ -17,8 +17,6 @@ Then run:
 git clone https://github.com/yucefsourani/arfedora-search-provider
 cd arfedora-search-provider
 sudo ./install.sh
-
-after install logout/login or reboot system
 ```
 
 And to uninstall it:
@@ -28,3 +26,5 @@ sudo ./uninstall.sh
 
 ## Screenshot
 ![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-search-provider/main/Screenshot1.png "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-search-provider/main/Screenshot2.jpg "Screenshot")
