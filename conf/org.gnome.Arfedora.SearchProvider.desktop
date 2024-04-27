@@ -7,3 +7,4 @@ Name=Arfedora
 Comment=GNOME Shell search provider for Arfedora
 Terminal=false
 Type=Application
+NoDisplay=true
