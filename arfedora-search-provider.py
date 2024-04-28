@@ -38,23 +38,20 @@ class ArfedoraSearchProvider(dbus.service.Object):
         self.session_bus = dbus.SessionBus()
         bus_name = dbus.service.BusName("org.gnome.Arfedora.SearchProvider", bus=self.session_bus)
         dbus.service.Object.__init__(self, bus_name, "/org/gnome/Arfedora/SearchProvider")
-        
         self.result = {}
-        
+
     @dbus.service.method(in_signature="as", out_signature="as", dbus_interface="org.gnome.Shell.SearchProvider2")
     def GetInitialResultSet(self, terms):
         # only parse queries that start with $ and contain 2 or more terms 
         """عند بحث المستخدم عن أي نص سيتم تمرير النص سيتم تقسيم السطر ووضعه في قائمة من الكلمات """
-        
         self.result.clear()
-        if not terms[0].strip().startswith("$$"): # التأكد من أن أول كلمة تبدأ بعلامتي $ وهو أمر إختياري
-            return []
-        qs = " ".join(terms).strip()[2:] # دمج كل الكلمات في سطر واحد والتخلي عن علامتي $
-        if len(qs) < 3: # تأكد من أن المستخدم أدخل 3 أحرف على الأقل
+        qs = "".join([t for t in terms]) # دمج كل الكلمات في سطر واحد والتخلي عن علامتي $
+        qs = qs.strip()
+        if len(qs) < 5 or not qs.startswith("$$"): # تأكد من أن المستخدم أدخل 3 أحرف على الأقل
             return []
         out = []
         try:
-            url   = Request("https://arfedora.blogspot.com/search?{}&{}".format(urlencode({"q":qs}),urlencode({"max-results":"5"})),headers={"User-Agent":"Mozilla/5.0"})
+            url   = Request("https://arfedora.blogspot.com/search?{}&{}".format(urlencode({"q":qs[2:]}),urlencode({"max-results":"5"})),headers={"User-Agent":"Mozilla/5.0"})
             opurl = urlopen(url)
             soup  = BeautifulSoup(opurl,"html.parser")
             for h2 in soup.findAll("h2",{"class":"post-title entry-title"}):
@@ -64,7 +61,8 @@ class ArfedoraSearchProvider(dbus.service.Object):
                 self.result.setdefault(link_value,{"id": link_value,"name" : title_value[0:50] ,"description" : link_value ,"icon" :  "web-browser-symbolic"})
                 out.append(link_value) # سنحتاج إرجاع قائمة بقيم مميزة لا تتكر لكل  نتيجة مثلا الرابط
         except Exception as e:
-            pass        
+            print(e)
+            pass
         return out
 
     @dbus.service.method(in_signature="asas", out_signature="as", dbus_interface="org.gnome.Shell.SearchProvider2")
