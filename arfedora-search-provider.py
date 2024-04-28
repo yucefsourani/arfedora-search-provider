@@ -59,7 +59,7 @@ class ArfedoraSearchProvider(dbus.service.Object):
             soup  = BeautifulSoup(opurl,"html.parser")
             for h2 in soup.findAll("h2",{"class":"post-title entry-title"}):
                 link_value  =  h2.a.get("href")
-                title_value =  h2.a.text
+                title_value =  h2.a.text.strip()
                 # سننحتاج قاموس يحتوي هذه المعلومات عن كل نتيجة ستظهر 
                 self.result.setdefault(link_value,{"id": link_value,"name" : title_value[0:50] ,"description" : link_value ,"icon" :  "web-browser-symbolic"})
                 out.append(link_value) # سنحتاج إرجاع قائمة بقيم مميزة لا تتكر لكل  نتيجة مثلا الرابط
